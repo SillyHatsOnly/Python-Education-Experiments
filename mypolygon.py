@@ -1,36 +1,73 @@
-from math import *
+import math
 from swampy.TurtleWorld import *
+
 world = TurtleWorld()
 bob = Turtle()
 bob.delay = 0.01
 print (bob)
 
 def square(t, length):
+    """Draws a square with sides of the given length.
+
+    Returns the Turtle to the starting position and location.
+    """
     for i in range(4):
         fd(t, length)
         lt(t)
 
-def polygon(t, length, n):
+
+def polyline(t, n, length, angle):
+    """Draws n line segments.
+
+    t: Turtle object
+    n: number of line segments
+    length: length of each segment
+    angle: degrees between segments
+    """
     for i in range(n):
         fd(t, length)
-        rt(t, 360/n)
+        lt(t, angle)
 
-def circle(t, r):
-    lenght = (2*pi*r)/360
-    polygon(t, lenght, 360)
+
+def polygon(t, n, length):
+    """Draws a polygon with n sides.
+
+    t: Turtle
+    n: number of sides
+    length: length of each side.
+    """
+    angle = 360.0/n
+    polyline(t, n, length, angle)
+
 
 def arc(t, r, angle):
-    length = 2 * pi * r * angle / 360
-    n = int(length/10)+1
-    step_length = length / n
-    step_angle = angle / n
-    for i in range(n):
-        fd(t, step_length)
-        lt(t, step_angle)
+    """Draws an arc with the given radius and angle.
 
-#square(bob, 150)
-#polygon(bob, 10, 30)
-#circle(bob, 100)
-arc(bob, 100, 180)
+    t: Turtle
+    r: radius
+    angle: angle subtended by the arc, in degrees
+    """
+    arc_length = 2 * math.pi * r * abs(angle) / 360
+    n = int(arc_length / 4) + 1
+    step_length = arc_length / n
+    step_angle = float(angle) / n
 
-wait_for_user()
+    # making a slight left turn before starting reduces
+    # the error caused by the linear approximation of the arc
+    lt(t, step_angle/2)
+    polyline(t, n, step_length, step_angle)
+    rt(t, step_angle/2)
+
+
+def circle(t, r):
+    """Draws a circle with the given radius.
+
+    t: Turtle
+    r: radius
+    """
+    arc(t, r, 360)
+
+def listok():
+    arc(bob, 100, 60)
+    lt(90)
+    arc(bob, 100, 60)
