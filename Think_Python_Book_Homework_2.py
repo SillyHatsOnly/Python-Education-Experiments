@@ -7,8 +7,8 @@ bob.delay = 0.01
 print (bob)
 
 def square(t, length):
-    """Draws a square with sides of the given length.
-
+    """
+    Draws a square with sides of the given length.
     Returns the Turtle to the starting position and location.
     """
     for i in range(4):
@@ -17,8 +17,8 @@ def square(t, length):
 
 
 def polyline(t, n, length, angle):
-    """Draws n line segments.
-
+    """
+    Draws n line segments.
     t: Turtle object
     n: number of line segments
     length: length of each segment
@@ -30,8 +30,8 @@ def polyline(t, n, length, angle):
 
 
 def polygon(t, n, length):
-    """Draws a polygon with n sides.
-
+    """
+    Draws a polygon with n sides.
     t: Turtle
     n: number of sides
     length: length of each side.
@@ -41,8 +41,8 @@ def polygon(t, n, length):
 
 
 def arc(t, r, angle):
-    """Draws an arc with the given radius and angle.
-
+    """
+    Draws an arc with the given radius and angle.
     t: Turtle
     r: radius
     angle: angle subtended by the arc, in degrees
@@ -60,8 +60,8 @@ def arc(t, r, angle):
 
 
 def circle(t, r):
-    """Draws a circle with the given radius.
-
+    """
+    Draws a circle with the given radius.
     t: Turtle
     r: radius
     """
